@@ -12,6 +12,6 @@
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="CustomTool" Version="1.0.0" />
+    <PackageReference Include="CustomTool" Version="1.0.4" />
   </ItemGroup>
 </Project>

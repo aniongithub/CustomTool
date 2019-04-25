@@ -9,7 +9,7 @@ namespace CustomTool
         static void Main(string[] args)
         {
             Console.WriteLine($"Arguments: {string.Join(' ', args)}");
-            File.WriteAllText(Path.Combine(Path.GetDirectoryName(args[0]), "CustomTool.g.cs"), "public sealed class Test {  }");
+            File.WriteAllText(args[1], "public sealed class Test {  }");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<!-- RunCustomTool.targets -->
 <Project>
   <PropertyGroup>
+    <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
         
     <!-- Command to invoke CustomTool -->
     <CustomTool>dotnet "$(MSBuildThisFileDirectory)/netcoreapp2.2/CustomTool.dll"</CustomTool>
@@ -9,7 +10,10 @@
     <CustomVariable>"$(MSBuildProjectDir)"</CustomVariable>
   </PropertyGroup>
 
-  <Target Name="CustomTool" BeforeTargets="CoreCompile" DependsOnTargets="PrepareForBuild">
-    <Exec Command="$(CustomTool) $(ProjectPath) --custom-variable $(CustomVariable)" />
-  </Target>
+    <Target Name="CustomTool" BeforeTargets="CoreCompile" DependsOnTargets="PrepareForBuild">
+        <Exec Command="$(CustomTool) $(ProjectPath) $(IntermediateOutputPath)CustomTool.g.cs" />
+        <ItemGroup Condition="Exists('$(IntermediateOutputPath)\CustomTool.g.cs')">
+            <Compile Include="$(IntermediateOutputPath)\CustomTool.g.cs" />
+        </ItemGroup>
+    </Target>
 </Project>
