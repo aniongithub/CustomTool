@@ -1,0 +1,4 @@
+﻿<!-- CustomTool.targets -->
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)/../../tools/RunCustomTool.targets" />
+</Project>
